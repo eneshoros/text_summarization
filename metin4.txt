@@ -1,0 +1,21 @@
+NLP, insan dili ile bilgisayarlar arasındaki etkileşimlere odaklanan çalışma alanına denir. İnsan dili, yapısı gereği karmaşık bir yapıya sahiptir. Bilgisayarların bu dili algılayabilmesi ve işleyebilmesi için bu verilerin sayısal değerlere çevrilmesi gerekir. Bu amaçla yapılan çalışmalar yapay zeka ile birleştirilerek NLP (Doğal dil işleme) çalışmalarına dönüşür.
+
+NLP’ yi kullanarak otomatik özetleme, metin çevirisi, adlandırılmış varlık tanıma, ilişki çıkarma, duygu analizi, konuşma tanıma ve konu bölümleme gibi görevleri gerçekleştirmek için bilgiyi düzenleyebilir ve yapılandırabiliriz.
+
+Python’da NLP çalışmaları için pek çok kütüphane bulunur. Bunlardan en yaygını nltk kütüphanesidir. Bunun dışında gensim, scaPy, scikit-learn ve polyglot kütüphaneleri örnek verilebilir. Bu yazıda metin işlemeyi nltk kütüphanesi ile göstereceğim.
+
+METİN ÖN İŞLEME ADIMLARI
+Metin ön işlemlerinin doğru bir şekilde yapılması, makine öğrenmesi uygulamalarının daha iyi sonuç vermesini ve modellerin iyileştirilmesini sağlar. Peki metnin ön işlemden geçirilmesi neden önemlidir? En büyük nedeni curse of dimensionality (boyutların laneti)’dir. Yukarıda bahsettiğim gibi, bilgisayarın insan dilini algılayabilmesi için metin verisini sayısal verilere çevirmemiz gereklidir. Her bir terimi/kelimeyi sayısal verilere çevirdiğimizde benzersiz bir sayı ile ifade etmemiz gerekir. Her bir terim/kelime ise uzayda bir boyutu kaplar. Mesela, bir kelime büyük harfle ve küçük harfle yazılı ise ya da metinde stopwordler varsa bu kelimelerin uzayda bir boyutla gösterilmesi gerekir. Bu metinlerin ön işlemden geçirilmesi ise boyutun azalmasını sağlar.
+
+Metin ön işleme adımlarını iki konu başlığı altında anlatacağım. Bu başlıklar normalizasyon ve gürültü kaldırmadır. Normalizasyon yöntemleri olarak Lemmatizer ve Stemmer’dan bahsedeceğim. Gürültü kaldırmanın yöntemleri olarak; URL karakterlerinin kaldırılması, HTML etiketlerinin kaldırılması, fazla boşlukların silinmesi, bazı durumlarda ASCII karakterlerin dönüştürülmesi, özel karakterlerin kaldırılması, metni küçük harfe çevirmek, bazı durumlarda numara verisinin kaldırılması, stopwordlerin temizlenmesi, ikiden küçük harfe sahip kelimelerin kaldırılması gibi işlemler vardır. Bu adımları aşağıda detaylı olarak bulabilir ve kod parçaları ile deneyebilirsiniz.
+
+1. Normalizasyon
+Normalizasyon işlemi metnin farklı formlarının aynı forma getirilmesidir.
+
+Bu yazıda normalizasyon işlemlerinden tokenizasyon, stemmer ve lemmatizerı anlatacağım.
+
+Tokenizasyon
+
+NLP metin işleme işlemlerinden önce yapılması gereken en önemli şey cümleyi (dokümanı) kelimelerine ayırmaktır. Bu kelimelere ayırma işlemine tokenizayon denir. Özel karakterler de token sayılmaktadır.
+
+Bu işlem için en kolay yöntem nltk kütüphanesinin word_tokenize() fonksiyonunu kullanmaktır.
