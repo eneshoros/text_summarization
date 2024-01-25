@@ -123,7 +123,7 @@ class ozet_class(QtWidgets.QMainWindow):
     #Özet metni verecek fonksiyon. Parametre self alarak bütün fonksiyonlara ve class'a erişim sağlayabiliyor.
     def ozet_hazirlik(self):
         metin=self.ui.arayuz_metin.toPlainText()#"arayuz_metin" elementinin içeriği text olarak alınarak metine ata
-        metin=''.join([i for i in metin if not i.isdigit()])#Metindeki sayısal değerleri temizle
+        # metin=''.join([i for i in metin if not i.isdigit()])#Metindeki sayısal değerleri temizle
         metin_dili=single_detection(metin,api_key='2a10ac925bb4a61c23099549ee1404de')#"single_detection" fonksiyonu ile metnin dili algılandı
         dil_secim=self.ui.comboBox.currentText()#"comboBox" elementinin içeriği alınarak hangi dilde özet istenildiği bilgisi değişkene atandı
         metin=GoogleTranslator(source=metin_dili,target='en').translate(metin)#Metnin dili ne olursa olsun İngilizce'ye çevirilerek kelimelere ve cümlelere parçalama, kök bulma işlemi İngilizce'ye göre yapıldı
@@ -136,7 +136,11 @@ class ozet_class(QtWidgets.QMainWindow):
         tf_isf_matrisi=tf_isf_matrisi_olustur(tf_matrisi,isf_matrisi)#Tf*isf matrisini hesaplama
         cumle_puanlari=cumle_puanlama(tf_isf_matrisi)#Her cümlenin cümle puanını hesaplama
         ortalama=ortalama_puan_bulma(cumle_puanlari)#Cümlelerin ortalama cümle puanını hesaplama
-        ozet=ozet_olustur(cumleler,cumle_puanlari,ortalama)#Belirli bir ortalamanın üstünde daha doğru bir özet çıkarmasını sağlayarak özeti oluşturmak
+        ozet_katsayi=0.0
+        ozet_oran=(int)(self.ui.comboBox_2.currentText())
+        if ozet_oran!=50: ozet_katsayi=ozet_oran/50
+        else : ozet_katsayi=1.0
+        ozet=ozet_olustur(cumleler,cumle_puanlari,ozet_katsayi*ortalama)#Belirli bir ortalamanın üstünde daha doğru bir özet çıkarmasını sağlayarak özeti oluşturmak
         if(dil_secim=='Türkçe'):#Özet istenen dil Türkçe ise 
             ozet=GoogleTranslator(source='en',target='tr').translate(ozet)#Daha önceden İngilizce'ye çevirilen metni Türkçe'ye çevir
         self.ui.arayuz_ozet_metin.setPlainText(ozet)#"arayuz_ozet_metin" elementine metnin özeti setPlainText fonksiyonu ile yazdırılır

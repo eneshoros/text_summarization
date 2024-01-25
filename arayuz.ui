@@ -75,9 +75,9 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>350</x>
      <y>360</y>
-     <width>121</width>
+     <width>100</width>
      <height>25</height>
     </rect>
    </property>
@@ -124,6 +124,80 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>360</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string>50</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>20</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>30</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>40</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>50</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>70</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>80</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>90</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>360</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Özet Oranı (%)</string>
    </property>
   </widget>
  </widget>
